@@ -104,13 +104,12 @@
     created () {
       this.http();
       this.classMap = ['decrease','discount','special','invoice','guarantee'];
-      let that = this;
-      document.onreadystatechange = function(){
-        if(document.readyState == 'complete') {
-          that._initScroll();
-          that._calculateHeight();
-        }
-      }
+    },
+    mounted () {
+      this.$nextTick(() => {
+        this._initScroll();
+        this._calculateHeight();
+      });
     },
     computed : {
       currentIndex () {
@@ -118,7 +117,7 @@
         for (let i = 0;i < len;i++) {
           let height1 = this.foodListHeight[i];
           let height2 = this.foodListHeight[i+1];
-          let getIndex = this.scrollY >= height1 && this.scrollY < height2
+          let getIndex = (this.scrollY >= height1 && this.scrollY < height2)
           if (!height2 || getIndex) {
             return i;
           }
@@ -148,8 +147,6 @@
           })
       },
       _initScroll () {
-        let ul = document.getElementById('foods-content');
-
         if(!this.menuScroll) {
           this.menuScroll = new BetterScroll('#menu-wrapper',{
             movable: true,
@@ -271,10 +268,15 @@
           border-none()
         .food-icon
           width : 60px
-          height : 60px
+          height : 0
+          padding-bottom: 60px
+          position: relative
           img
-            width : 100%
-            height : 100%
+            position: absolute
+            top: 0
+            left: 0
+            width : 60px
+            height : 60px
         .food-msg
           flex : 1
           margin-left: 10px
