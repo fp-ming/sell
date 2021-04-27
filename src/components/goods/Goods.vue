@@ -103,7 +103,7 @@
       }
     },
     created() {
-      this.http();
+      this.http(); 
       this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
     },
     computed: {
