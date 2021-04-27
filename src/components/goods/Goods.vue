@@ -1,5 +1,5 @@
 <template>
-  <div class="goods">
+  <div class="goods"> 
     <div class="menu-wrapper" id="menu-wrapper">
       <ul id="menu-content">
         <li
